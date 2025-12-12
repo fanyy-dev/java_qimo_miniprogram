@@ -7,6 +7,7 @@ G:\fandianapp\backend\src\main\java\com\restaurant\entity\Orders.java
 G:\fandianapp\backend\src\main\java\com\restaurant\service\StoreService.java
 G:\fandianapp\backend\src\main\java\com\restaurant\mapper\UserMapper.java
 G:\fandianapp\backend\src\main\java\com\restaurant\entity\CouponTemplate.java
+G:\fandianapp\backend\src\main\java\com\restaurant\service\StoreServiceImpl.java
 G:\fandianapp\backend\src\main\java\com\restaurant\service\UserServiceImpl.java
 G:\fandianapp\backend\src\main\java\com\restaurant\dto\LoginRequest.java
 G:\fandianapp\backend\src\main\java\com\restaurant\entity\OrderItem.java
