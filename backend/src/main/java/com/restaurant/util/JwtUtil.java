@@ -2,10 +2,11 @@ package com.restaurant.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,12 +32,13 @@ public class JwtUtil {
         claims.put("username", username);
         claims.put("userType", userType);
         
+        SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expiration * 1000))
-                .signWith(SignatureAlgorithm.HS512, secret)
+                .signWith(key)
                 .compact();
     }
 
@@ -45,10 +47,12 @@ public class JwtUtil {
      */
     public Claims getClaimsFromToken(String token) {
         try {
+            SecretKey key = Keys.hmacShaKeyFor(secret.getBytes());
             return Jwts.parser()
-                    .setSigningKey(secret)
-                    .parseClaimsJws(token)
-                    .getBody();
+                    .verifyWith(key)
+                    .build()
+                    .parseUnsecuredClaims(token)
+                    .getPayload();
         } catch (Exception e) {
             return null;
         }

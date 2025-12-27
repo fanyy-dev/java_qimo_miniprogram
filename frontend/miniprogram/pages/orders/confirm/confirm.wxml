@@ -1,0 +1,109 @@
+<view class="container">
+  <!-- 登录提示 -->
+  <view class="login-prompt" wx:if="{{!isLoggedIn}}">
+    <view class="prompt-content">
+      <view class="prompt-icon">🔒</view>
+      <view class="prompt-text">请先登录再进行订单确认</view>
+      <button class="login-btn" bindtap="goToLogin">登录</button>
+    </view>
+  </view>
+
+  <!-- 订单确认内容 -->
+  <view class="order-content" wx:else>
+    <!-- 收货地址 -->
+    <view class="address-section">
+      <view class="section-title">收货地址</view>
+      <view class="address-card" bindtap="selectAddress" wx:if="{{selectedAddress}}">
+        <view class="address-info">
+          <view class="contact-row">
+            <text class="contact-name">{{selectedAddress.name}}</text>
+            <text class="contact-phone">{{selectedAddress.phone}}</text>
+          </view>
+          <view class="address-detail">{{selectedAddress.fullAddress}}</view>
+        </view>
+        <view class="address-arrow">></view>
+      </view>
+      <view class="add-address" bindtap="addAddress" wx:else>
+        <view class="add-icon">+</view>
+        <text>添加收货地址</text>
+      </view>
+    </view>
+
+    <!-- 商品列表 -->
+    <view class="items-section">
+      <view class="section-title">商品清单</view>
+      <view class="items-list">
+        <view class="item-row" wx:for="{{orderItems}}" wx:key="id">
+          <image class="item-image" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="item-info">
+            <view class="item-name">{{item.dishName}}</view>
+            <view class="item-desc">{{item.description}}</view>
+            <view class="item-bottom">
+              <text class="item-price">¥{{item.price}}</text>
+              <text class="item-quantity">x{{item.quantity}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 支付方式 -->
+    <view class="payment-section">
+      <view class="section-title">支付方式</view>
+      <view class="payment-methods">
+        <view class="payment-item {{payMethod === 'wechat' ? 'active' : ''}}" bindtap="selectPayMethod" data-method="wechat">
+          <image class="payment-icon" src="/images/common/wechat-pay.png" mode="aspectFit"></image>
+          <text class="payment-name">微信支付</text>
+          <image class="payment-radio" src="{{payMethod === 'wechat' ? '/images/common/radio-checked.png' : '/images/common/radio-unchecked.png'}}" mode="aspectFit"></image>
+        </view>
+        <view class="payment-item {{payMethod === 'alipay' ? 'active' : ''}}" bindtap="selectPayMethod" data-method="alipay">
+          <image class="payment-icon" src="/images/common/alipay.png" mode="aspectFit"></image>
+          <text class="payment-name">支付宝</text>
+          <image class="payment-radio" src="{{payMethod === 'alipay' ? '/images/common/radio-checked.png' : '/images/common/radio-unchecked.png'}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class="remark-section">
+      <view class="section-title">订单备注</view>
+      <textarea class="remark-input" placeholder="如有特殊要求，请在此处说明..." maxlength="200" bindinput="onRemarkChange" value="{{remark}}"></textarea>
+    </view>
+
+    <!-- 优惠券 -->
+    <view class="coupon-section">
+      <view class="section-title">优惠券</view>
+      <view class="coupon-item" bindtap="selectCoupon">
+        <text class="coupon-text">{{selectedCoupon ? selectedCoupon.title : '选择优惠券'}}</text>
+        <view class="coupon-arrow">></view>
+      </view>
+    </view>
+
+    <!-- 订单金额 -->
+    <view class="amount-section">
+      <view class="amount-row">
+        <text class="amount-label">商品总额</text>
+        <text class="amount-value">¥{{subtotalPrice}}</text>
+      </view>
+      <view class="amount-row">
+        <text class="amount-label">配送费</text>
+        <text class="amount-value">¥{{deliveryFee}}</text>
+      </view>
+      <view class="amount-row discount" wx:if="{{discountAmount > 0}}">
+        <text class="amount-label">优惠券优惠</text>
+        <text class="amount-value">-¥{{discountAmount}}</text>
+      </view>
+      <view class="amount-row total">
+        <text class="amount-label">实付款</text>
+        <text class="amount-value">¥{{finalPrice}}</text>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="submit-section">
+      <view class="submit-btn" bindtap="submitOrder">
+        提交订单
+      </view>
+    </view>
+  </view>
+</view>

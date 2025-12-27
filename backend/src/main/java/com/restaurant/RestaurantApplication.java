@@ -10,11 +10,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @MapperScan("com.restaurant.mapper")
 public class RestaurantApplication {
+
     public static void main(String[] args) {
+        System.setProperty("spring.beaninfo.ignore", "true");
         SpringApplication.run(RestaurantApplication.class, args);
         System.out.println("\n===========================================");
         System.out.println("饭店管理系统启动成功！");
-        System.out.println("接口文档地址: http://localhost:8080/api");
+        System.out.println("接口文档地址: http://localhost:8080");
         System.out.println("===========================================\n");
     }
 }

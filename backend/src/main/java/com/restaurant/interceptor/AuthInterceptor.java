@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * 认证拦截器
@@ -23,6 +23,23 @@ public class AuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         // OPTIONS请求直接放行
         if ("OPTIONS".equals(request.getMethod())) {
+            return true;
+        }
+
+        // 获取请求路径
+        String requestPath = request.getRequestURI();
+        
+        // 排除登录相关接口和公开接口
+        if (requestPath.contains("/auth/login") || 
+            requestPath.contains("/auth/register") || 
+            requestPath.contains("/auth/sendCode") ||
+            requestPath.contains("/store/") || // 添加门店接口（包含门店详情）
+            requestPath.contains("/dish/") || // 添加菜品接口（包含菜品详情）
+            requestPath.contains("/dish/recommend") ||
+            requestPath.contains("/dish/new") ||
+            requestPath.contains("/dish/top-sales") ||
+            requestPath.contains("/dish-category/") || // 添加分类详情接口
+            requestPath.contains("/error")) {
             return true;
         }
 

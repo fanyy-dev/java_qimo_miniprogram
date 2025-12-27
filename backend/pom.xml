@@ -8,7 +8,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.14</version>
+        <version>3.1.5</version>
         <relativePath/>
     </parent>
 
@@ -22,9 +22,9 @@
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
-        <jwt.version>0.9.1</jwt.version>
-        <fastjson.version>2.0.32</fastjson.version>
+        <mybatis-plus.version>3.5.4</mybatis-plus.version>
+        <jwt.version>0.12.3</jwt.version>
+        <fastjson.version>2.0.43</fastjson.version>
     </properties>
 
     <dependencies>
@@ -58,14 +58,26 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.2.18</version>
+            <version>1.2.20</version>
         </dependency>
 
         <!-- JWT -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
+            <artifactId>jjwt-api</artifactId>
             <version>${jwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jwt.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jwt.version}</version>
+            <scope>runtime</scope>
         </dependency>
 
         <!-- FastJSON -->
@@ -100,7 +112,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.20</version>
+            <version>5.8.25</version>
         </dependency>
     </dependencies>
 

@@ -1,11 +1,8 @@
 <!-- pages/index/index.wxml -->
 <view class="container">
-  <!-- 轮播图 -->
-  <swiper class="banner-swiper" indicator-dots autoplay circular>
-    <swiper-item wx:for="{{banners}}" wx:key="id">
-      <image src="{{item.image}}" class="banner-image" mode="aspectFill"></image>
-    </swiper-item>
-  </swiper>
+
+
+
 
   <!-- 分类导航 -->
   <view class="category-nav">
@@ -13,6 +10,28 @@
       <image src="{{item.icon}}" class="category-icon"></image>
       <text class="category-name">{{item.name}}</text>
     </view>
+  </view>
+
+  <!-- 特价团购 -->
+  <view class="section">
+    <view class="section-header">
+      <text class="section-title">特价团</text>
+      <text class="section-more" bindtap="onMoreDishTap">更多 ></text>
+    </view>
+    <scroll-view scroll-x class="group-buy-scroll">
+      <view class="group-buy-item card" wx:for="{{specialOfferDishes}}" wx:key="id" bindtap="onDishTap" data-id="{{item.id}}">
+        <image src="{{item.image}}" class="group-buy-image"></image>
+        <view class="group-buy-info">
+          <text class="group-buy-name text-ellipsis">{{item.dishName}}</text>
+          <view class="group-buy-price">
+            <text class="price-symbol">¥</text>
+            <text class="price-integer">{{item.price}}</text>
+            <text class="price-original">¥{{item.originalPrice || item.price}}</text>
+          </view>
+          <view class="group-buy-sales">{{item.saleCount || 0}}人已团</view>
+        </view>
+      </view>
+    </scroll-view>
   </view>
 
   <!-- 推荐菜品 -->

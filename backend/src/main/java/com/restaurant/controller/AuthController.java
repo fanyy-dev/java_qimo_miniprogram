@@ -8,7 +8,7 @@ import com.restaurant.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * 认证控制器

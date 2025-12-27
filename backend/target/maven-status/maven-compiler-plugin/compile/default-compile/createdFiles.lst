@@ -17,6 +17,7 @@ com\restaurant\entity\DishCategory.class
 com\restaurant\service\UserServiceImpl.class
 com\restaurant\common\PageQuery.class
 com\restaurant\common\Result.class
+com\restaurant\config\RedisConfig.class
 com\restaurant\service\AuthService.class
 com\restaurant\mapper\UserMapper.class
 com\restaurant\entity\Store.class

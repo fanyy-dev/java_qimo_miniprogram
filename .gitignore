@@ -1,0 +1,46 @@
+# 编译产物
+backend/target/
+backend/src/main/resources/sql/*.sql.bak
+
+# IDE配置
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+
+# 日志文件
+*.log
+*.log.*
+backend/*startup.log
+backend/*backend*.log
+backend/*direct_startup.log
+
+# 临时文件
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# 环境配置文件
+backend/src/main/resources/application-local.yml
+backend/src/main/resources/application-dev.yml
+
+# 依赖文件
+node_modules/
+frontend/miniprogram/node_modules/
+
+# 小程序编译产物
+frontend/miniprogram/miniprogram_npm/
+frontend/miniprogram/.sourcemap/
+frontend/miniprogram/project.private.config.json
+frontend/miniprogram/dist/
+
+# 证书文件
+*.pem
+*.p12
+*.keystore
+*.jks

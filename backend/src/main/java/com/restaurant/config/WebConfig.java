@@ -22,7 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("*")
+                .allowedOrigins("http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:8082", "http://localhost:8083", "http://localhost:8084")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true)
@@ -37,11 +37,17 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(authInterceptor)
                 .addPathPatterns("/**")
                 .excludePathPatterns(
-                        "/auth/login",
-                        "/auth/register",
-                        "/auth/sendCode",
-                        "/store/list",
-                        "/dish/list",
+                        "/api/auth/login",
+                        "/api/auth/register",
+                        "/api/auth/sendCode",
+                        "/api/store/list",
+                        "/api/store/*",
+                        "/api/dish/list",
+                        "/api/dish/*",
+                        "/api/dish/recommend",
+                        "/api/dish/new",
+                        "/api/dish/top-sales",
+                        "/api/dish-category/list",
                         "/error"
                 );
     }

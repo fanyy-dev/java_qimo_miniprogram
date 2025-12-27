@@ -32,8 +32,8 @@ spring:
     port: 6379
     password: 
     database: 0
-    timeout: 5000
-    jedis:
+    timeout: 5000ms
+    lettuce:
       pool:
         max-active: 20
         max-wait: -1

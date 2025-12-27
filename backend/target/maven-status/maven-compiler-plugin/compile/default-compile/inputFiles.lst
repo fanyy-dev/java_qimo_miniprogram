@@ -38,6 +38,7 @@ G:\fandianapp\backend\src\main\java\com\restaurant\service\ShoppingCartService.j
 G:\fandianapp\backend\src\main\java\com\restaurant\entity\ShoppingCart.java
 G:\fandianapp\backend\src\main\java\com\restaurant\entity\User.java
 G:\fandianapp\backend\src\main\java\com\restaurant\entity\Dish.java
+G:\fandianapp\backend\src\main\java\com\restaurant\config\RedisConfig.java
 G:\fandianapp\backend\src\main\java\com\restaurant\dto\CreateOrderRequest.java
 G:\fandianapp\backend\src\main\java\com\restaurant\entity\UserAddress.java
 G:\fandianapp\backend\src\main\java\com\restaurant\entity\DishCategory.java
